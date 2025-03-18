@@ -1,157 +1,85 @@
-# RNDemoApp
- Appium Setup and Running Guide
+Appium Setup and Usage Guide (Android & iOS) - Java
 
-1. What the Project Does ?
+Prerequisites
 
-The Appium Setup and Running Guide provides a comprehensive guide for setting up and running Appium for automated mobile testing on both iOS and Android platforms. It includes stepbystep instructions for configuring the necessary environment variables, installing required software like Java, Node.js, Maven, and Appium, and running tests using TestNG.
+Ensure you have the following installed on your machine before setting up Appium:
 
-The guide also covers setting up the Appium server, starting it, and verifying that devices (both real and emulated) are connected and recognized. Additionally, it explains how to run tests on both iOS and Android devices using Appium.
+General Requirements
 
-2. Why the Project is Useful ?
+Java JDK (8 or later)
 
-This project is useful for anyone who is looking to automate the testing of mobile applications on iOS and Android devices. By setting up Appium, users can:
+Maven
 
- Automate the testing process, saving time and reducing human errors during testing.
- Support testing across multiple mobile platforms, both iOS and Android, using a  framework.
- Ensure consistency in testing, as tests can be repeated with the same configurations on different devices.
- Use a free and opensource solution for mobile automation testing, which makes it accessible to everyone, from individual developers to large teams.
+Node.js and npm
 
-3. How Users Can Get Started with the Project ?
-  1. Appium Setup and Running on iOS
+Appium Server
 
-  1.1 Path Setup
+Appium Desktop (optional, for GUI control)
 
-  Ensure that the following paths are set in your environment variables:
+Appium Inspector
 
-  Java Path
-   Set `JAVA_HOME` to the path where Java is installed.
+Android Requirements
 
- Mac/Linux:
-  export JAVA_HOME=/path/to/jdk  
-  export PATH=$JAVA_HOME/bin:$PATH  
+Android Studio
 
- Windows:
-   Set `JAVA_HOME` in System Environment Variables and add `%JAVA_HOME%\bin` to the      `Path`.
+Android SDK & ADB
 
- Maven Path
-Set `MAVEN_HOME` to the Maven installation directory.
+Set environment variables for Android SDK
 
- Mac/Linux:
-  export MAVEN_HOME=/path/to/maven  
-  export PATH=$MAVEN_HOME/bin:$PATH  
+Enable Developer Mode & USB Debugging on the Android device
 
- Windows:
-   Set `MAVEN_HOME` in System Environment Variables and add `%MAVEN_HOME%\bin` to the `Path`.
+App APK file for testing
 
- Homebrew Install (for macOS)
-Install Homebrew if not already installed by running the following command:  
-/bin/bash c "$(curl fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+iOS Requirements (Mac Only)
 
- Node Path
-Install Node.js (which includes npm):  
-brew install node  
+macOS with Xcode
 
+Carthage (Dependency Manager)
 
-Or using nvm (Node Version Manager):  
-nvm install node  
-nvm use node  
+WebDriverAgent setup
 
-Ensure `npm` is installed and accessible:  
-npm v
+iOS Device or Simulator
 
- Appium Path
-Install Appium globally:  
-npm install g appium  
+Provisioning Profile & Signing Certificate (For real device testing)
 
-Verify Appium installation:  
-appium v
+Project Setup
 
-2. Android Working
+Create a Maven Project
 
- 2.1 In Script: Add Path to main.js
-In your Appium script, ensure you reference the correct path to the main.js file:  
-var appium = require('/path/to/appium/main.js');
+Configure required dependencies
 
- 2.2 Android Home Path Setup
-Set `ANDROID_HOME` to the location where the Android SDK is installed:
+Writing Test Scripts
 
- Mac/Linux:
-  export ANDROID_HOME=/path/to/android/sdk  
-  export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platformtools:$PATH  
+Initialize Appium Driver
 
- Windows:
-   Set `ANDROID_HOME` in System Environment Variables and add `ANDROID_HOME/tools` and `ANDROID_HOME/platformtools` to the `Path`.
+Set Desired Capabilities for Android and iOS
 
- 2.3 Android Studio SDK Path Setup
-Ensure that the Android SDK path is correctly configured in Android Studio. Check the SDK path in Android Studio and set it in the environment variable if needed.
+Perform UI interactions using Appium commands
 
- 2.4 Appium Terminal On
-To start the Appium server, run the following command in a new terminal window:  
-appium  
+Implement assertions for validation
 
-This will start the Appium server, and you'll see logs indicating that Appium is running and waiting for connections.
+Running Tests
 
- 2.5 Manually Check Devices in New Terminal
-To list all connected devices, run:  
-adb devices  
+Start Appium Server
 
-This will show all devices/emulators connected to your system.
+Execute tests using Maven or TestNG
 
- 2.6 Run as TestNG
-If you're using TestNG for running tests, ensure that TestNG is added to your pom.xml:  
-<dependency>  
-    <groupId>org.testng</groupId>  
-    <artifactId>testng</artifactId>  
-    <version>7.0.0</version>  
-    <scope>test</scope>  
-</dependency>  
+Troubleshooting
 
-Run your tests using Maven:  
-mvn test
+Android
 
-3. iOS Working
+Ensure the emulator/device is connected
 
- 3.1 In Script: Add Path to main.js
-In your Appium script, ensure you reference the correct path to the main.js file:  
-var appium = require('/path/to/appium/main.js');
+Verify Appium Server is running
 
- 3.2 Appium Terminal On
-To start the Appium server, run the following command in a terminal window:  
-appium  
+Use UIAutomatorViewer for element inspection
 
-This will start the Appium server for iOS testing.
+iOS
 
- 3.3 List of Devices
-To list available iOS devices and simulators, run:  
-xcrun simctl list devices  
+Verify WebDriverAgent is set up
 
-This will show all available iOS devices and simulators on your system.
+Trust the developer profile on the device
 
- 3.4 Insecure WebView
-To allow Appium to interact with Insecure WebViews, start the Appium server with the `allowinsecure=webview` flag:  
-appium allowinsecure=webview  
+Ensure the bundle ID matches the installed app
 
-This will allow Appium to bypass security restrictions on insecure webviews and interact with them during tests.
-
- 3.5 Run as TestNG
-If you're using TestNG for running iOS tests, ensure that TestNG is added to your pom.xml:  
-<dependency>  
-    <groupId>org.testng</groupId>  
-    <artifactId>testng</artifactId>  
-    <version>7.0.0</version>  
-    <scope>test</scope>  
-</dependency>  
-
-Run your iOS tests using Maven:  
-mvn test
-
-Support Documents
- [Appium Documentation](https://appium.io/docs/)
- [TestNG Documentation](https://testng.org/doc/)
- [Node.js Documentation](https://nodejs.org/en/docs/)
- [Android Studio Documentation](https://developer.android.com/studio)
-
-
-
-
-
+Conclusion
